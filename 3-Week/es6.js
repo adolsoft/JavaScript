@@ -79,6 +79,8 @@
 
 // console.log(ortalama(13, 24, 45));
 
+//spread operatoru
+
 const arr = ["Java","esma","html","pyhton"]
 
 console.log(arr);
