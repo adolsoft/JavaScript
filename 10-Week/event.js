@@ -20,6 +20,7 @@ function tikla() {
   // });
   
   buton.addEventListener("click", () => {
+    
     let h1 = document.querySelector("#baslik");
     
     h1.style.color = "red";
