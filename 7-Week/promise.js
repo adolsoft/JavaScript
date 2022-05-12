@@ -1,7 +1,7 @@
 
 const sozVerdik = new Promise(function(resolve, reject){
     let herseyYolunda = true;
-    if (!herseyYolunda) {
+    if (herseyYolunda) {
       resolve('İşlem tamam!');
     } else {
       reject('Bir sıkıntı var...');
