@@ -3,11 +3,11 @@
 
 class Bildirim {
 
-bildirimYap = (gelenClass) => {
-    console.log("islem yapıldı");
-    gelenClass.gonder();
-    console.log("bildiirm yapıldı");
-}
+    bildirimYap = (gelenClass) => {
+        console.log("islem yapıldı");
+        gelenClass.gonder();
+        console.log("bildiirm yapıldı");
+        }
 
 }
 
@@ -58,3 +58,5 @@ const click = () => {
 }
 
 click();
+
+//SOLİD prensipleri
