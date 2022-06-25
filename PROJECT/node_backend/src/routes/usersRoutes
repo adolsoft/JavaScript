@@ -1,0 +1,31 @@
+const express =  require('express');
+const router = express.Router();//body parser ı router objesine ekliyoruz.
+const auth = require("../middlewares/auth");
+
+
+//const Users = require('../models/Users');//user modelimizi buraya import ediyoruz // burası userDervice tanıdımlatıktan sonra bir işi yaramıyor.
+const { login, register, find, findAll, remove, update } = require("../services/usersServices");
+
+
+
+// get isteği ile gelen url'ye ulaşıyoruz.
+//router.get('/', (req, res) => {
+//    res.send(' user route ');
+//});
+
+router.post('/register', register);
+router.post('/login', login);
+router.get('/:id', find);
+router.get('/', auth, findAll);
+router.delete('/:id', remove);
+router.patch('/', update);
+
+   // Aiağıdakileri kontrol amaçlı yazdık.
+   // console.log(user);
+   // res.send(`${user} ismi geldi.`);
+
+
+
+
+//Bu dosyayı başka dosyalarda kullanmak için export yapmamız gerekiyor.
+module.exports = router;
