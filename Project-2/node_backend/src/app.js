@@ -2,6 +2,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 require('dotenv').config();
 
+//************************************** */
+// npm install cors --save
+
+const cors = require('cors');
+
+
+//***************************************** */
+
 const mongoose = require('mongoose');
 
 const app = express();
@@ -13,8 +21,14 @@ const usersRouter = require("./routes/usersRoutes");
 
 app.use(bodyParser.json());
 app.use('/users', usersRouter);
+//***************************** */
 
-// db Config
+app.use(cors({
+  origin: '*'
+}));
+
+//********************* */
+
 mongoose
   .connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(console.log("Mongodb connection is successful."))
