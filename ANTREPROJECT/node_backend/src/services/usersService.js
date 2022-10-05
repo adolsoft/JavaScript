@@ -1,7 +1,7 @@
 const Users = require('../models/Users');
 const jwt = require("jsonwebtoken");
 
-const login = async(req, res) => {
+const login = async (req, res) => {
     const { username, password } = req.body;
 
     //mongoose sorgu olusturma
@@ -11,7 +11,7 @@ const login = async(req, res) => {
 
     console.log(data);
     // aşağıda sorgu bulunup bulunmadığını kontrol et.
-    if(!data) res.status(404).json({message:"users ca't found."})
+    if(!data) res.status(404).json({message:"users can't found."})
 
     //bulundaysada 
     if(data) {
@@ -28,7 +28,7 @@ const login = async(req, res) => {
             email:data.email,
         };
          
-       const accessToken = jwt.sign({user}, process.env.jwt_secret_key);
+       const accessToken = jwt.sign({user}, process.env.jwt_secret_key); // burda bir sifre gerekiyor. / bu .env dosyasında tanımlıyoruz
 
         res.json({
             user : {

@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
 
-const sporcuBilgileriSchema = new mongoose.Schema({
+const sporcuUsersSchema = new mongoose.Schema({
     antrenorId:{
-        type:mongoose.Schema.Types.ObjectId,
-        required: true,
-    },
-    sporcuId:{
         type:mongoose.Schema.Types.ObjectId,
         required: true,
     },
@@ -27,6 +23,6 @@ const sporcuBilgileriSchema = new mongoose.Schema({
     },
 });
 
-const SporcuBilgi = mongoose.model("SporcuBilgileri", sporcuBilgileriSchema);
+const sporcuUser = mongoose.model("SporcuUsers", sporcuUsersSchema);
 
-module.exports = SporcuBilgi;
+module.exports = sporcuUser;
