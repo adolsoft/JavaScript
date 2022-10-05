@@ -24,10 +24,15 @@ app.use(cors(corsOptions));/// cors hatası ile ilgili
 //routing section
 const usersRouter = require("./routes/usersRoutes");
 const todosRouter = require("./routes/todosRoutes");
+const antrenorUsersRouter = require("./routes/antrenorUsersRouters");
+const sporcuUsersRouter = require("./routes/sporcuUsersRouters");
+
 
 
 app.use('/users', usersRouter);
 app.use('/todos', todosRouter);
+app.use('/antrenorUsers', antrenorUsersRouter);
+app.use('/sporcuUsers', sporcuUsersRouter);
 
 // db Config
 mongoose
