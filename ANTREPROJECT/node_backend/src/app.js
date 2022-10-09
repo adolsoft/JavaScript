@@ -15,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT;
 const mongoURL = process.env.MongoURL;
 
-app.use(bodyParser.json()); // burası aşağıda satırsa olursa kayıt işlemi yapmıyor.
+
 
 app.use(cors(corsOptions));/// cors hatası ile ilgili
 
@@ -26,13 +26,15 @@ const usersRouter = require("./routes/usersRoutes");
 const todosRouter = require("./routes/todosRoutes");
 const antrenorUsersRouter = require("./routes/antrenorUsersRouters");
 const sporcuUsersRouter = require("./routes/sporcuUsersRouters");
+const sporcuBecerileriRouter = require("./routes/sporcuBecerileriFutbolRouters");
 
-
+app.use(bodyParser.json()); // burası aşağıda satırsa olursa kayıt işlemi yapmıyor.
 
 app.use('/users', usersRouter);
 app.use('/todos', todosRouter);
 app.use('/antrenorUsers', antrenorUsersRouter);
 app.use('/sporcuUsers', sporcuUsersRouter);
+app.use('/sporcuBecerileri', sporcuBecerileriRouter);
 
 // db Config
 mongoose
