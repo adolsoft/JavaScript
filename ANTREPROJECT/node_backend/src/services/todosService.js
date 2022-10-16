@@ -13,8 +13,18 @@ const create = async (req, res) => {
 
 const findTodos = async (req, res) => {
     try {
-        const data = await Todos.find({userId: req.body.userId}).exec()// burada arama işlemi yapılıyor.
-        res.json(data)
+        
+        const data = await Todos.find({userId: req.query.userId}).exec()// burada arama işlemi yapılıyor.
+        const responsData = data.map((item) => {
+            return {
+                id: item._id,
+                userId: item.userId,
+                task: item.task,
+                completed: item.completed,
+            };
+        });
+        
+        res.json(responsData);
     } catch (error) {
         res.status(403).json({message:' Tasks could not be found '});
     }
@@ -34,7 +44,7 @@ const update = async (req, res) =>{
 
 const remove = async (req, res) => {
     try {
-        const data = await Todos.deleteOne({_id: req.body.id});
+        const data = await Todos.deleteOne({_id: req.query.id});
         res.json(data);
     } catch (error) {
         res.status(403).json({message:' Tasks could not be deleted'});
