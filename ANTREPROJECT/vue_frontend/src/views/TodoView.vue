@@ -1,21 +1,17 @@
 <template>
-<TodoList />
+    <TodoList />
   </template>
-
-<script>
-import TodoList from '../components/todo/TodoList'
-
-export default {
-    comments: {
-        TodoList,
+  
+  <script>
+  import TodoList from "../components/todo/ToDoList";
+  export default {
+    components: {
+      TodoList,
     },
     data() {
-        return {};
+      return {};
     },
-    components: { TodoList }
-};
-</script>
-
-
-<style>
-</style>
+  };
+  </script>
+  
+  <style></style>

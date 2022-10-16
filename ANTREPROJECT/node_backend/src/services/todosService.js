@@ -13,8 +13,7 @@ const create = async (req, res) => {
 
 const findTodos = async (req, res) => {
     try {
-        console.log("user id", req.body.userId);
-        console.log("------------------");
+        
         const data = await Todos.find({userId: req.query.userId}).exec()// burada arama işlemi yapılıyor.
         const responsData = data.map((item) => {
             return {
@@ -24,7 +23,7 @@ const findTodos = async (req, res) => {
                 completed: item.completed,
             };
         });
-        console.log(responsData);
+        
         res.json(responsData);
     } catch (error) {
         res.status(403).json({message:' Tasks could not be found '});
@@ -45,7 +44,7 @@ const update = async (req, res) =>{
 
 const remove = async (req, res) => {
     try {
-        const data = await Todos.deleteOne({_id: req.body.id});
+        const data = await Todos.deleteOne({_id: req.query.id});
         res.json(data);
     } catch (error) {
         res.status(403).json({message:' Tasks could not be deleted'});

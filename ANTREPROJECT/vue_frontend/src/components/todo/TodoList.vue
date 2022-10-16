@@ -1,55 +1,103 @@
 <template>
-    <v-card
-      class="mx-auto my-12"
-      max-width="374"
-    >
-    <v-card-title>Todo List</v-card-title>
+    <v-card class="mx-auto my-12" max-width="374">
+      <v-card-title>ToDo List</v-card-title>
   
-    <v-card-text>
-       <div>
-            <v-text-field class="todo-input" label="Add Todo"></v-text-field>
-       </div>
-    </v-card-text>
+      <v-card-text>
+        <div>
+          <v-text-field
+            v-model="todoText"
+            class="todo-input"
+            label="Add ToDo"
+            @keyup.enter="create"
+          ></v-text-field>
+        </div>
+      </v-card-text>
   
-    <v-divider class="mx-4"></v-divider>
-    <v-card-text>
-        <TodoItem v-for="item in todos" :key="item.id" :todo="item"/>
-        
-    </v-card-text>
+      <v-divider class="mx-4"></v-divider>
+      <v-card-text>
+        <TodoItem
+          v-for="(item, index) in todos"
+          :key="index"
+          :todo="item"
+          @editTodo="handleEdit"
+        />
+      </v-card-text>
   
-      
+      <div v-if="editMode.mode">
+        <v-divider class="mx-4"></v-divider>
+        <v-card-text>
+          <div>
+            <v-text-field
+              v-model="editMode.todoToBeEdited.task"
+              class="todo-input"
+              label="Edit ToDo"
+              @keyup.enter="updateTodo"
+            ></v-text-field>
+          </div>
+        </v-card-text>
+      </div>
     </v-card>
   </template>
-
-<script>
-import TodoItem from './TodoItem'
-export default {
-    comments: {
-        TodoItem
+  
+  <script>
+  import TodoItem from "./ToDoItem";
+  export default {
+    components: {
+      TodoItem,
     },
     data() {
-        return {
-            todos: [
-              {
-                 id: "63375acaf720485fb963993e1",
-                 userId: "6336afc8a1ced2ccdfb02141",
-                 task: "update task 1",
-                 completed: true,
-              },
-              {
-                 id: "63375acaf720485fb963993e2",
-                 userId: "6336afc8a1ced2ccdfb02141",
-                 task: "update task 2",
-                 completed: true,
-              },
-            ]
-        };
+      return {
+        todoText: "",
+        editMode: {
+          id: "",
+          mode: false,
+          todoToBeEdited: {},
+        },
+      };
     },
-    components: { TodoItem }
-};
-</script>
-
-<style scoped>/* hertarafı etkilemesin diye scoped yazıldı*/
-    .todo-input { width: 100%;}
-    
-</style>
+    computed: {
+      todos() {
+        return this.$store.state.todo.todos;
+      },
+    },
+    methods: {
+      create() {
+        const data = {
+          userId: this.$store.state.user.loggedInUser.id,
+          task: this.todoText,
+        };
+        this.$store.dispatch("todo/createTodo", data);
+        this.todoText = "";
+      },
+      handleEdit(id) {
+        this.editMode.id = id;
+        this.editMode.mode = true;
+        this.editMode.todoToBeEdited = this.todos.find((item) => {
+          if (item.id == id) {
+            return JSON.parse(JSON.stringify(item));
+          }
+        });
+      },
+      updateTodo() {
+        this.$store.dispatch("todo/updateTodo", {
+          id: this.editMode.id,
+          userId: this.editMode.todoToBeEdited.userId,
+          task: {
+            task: this.editMode.todoToBeEdited.task,
+          },
+        });
+        this.editMode.mode = false;
+      },
+    },
+  };
+  </script>
+  
+  <style scoped>
+  .todo-input {
+    width: 100%;
+  }
+  .bordered {
+    border: 1px solid;
+    border-radius: 5px;
+  }
+  </style>
