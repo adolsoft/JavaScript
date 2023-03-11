@@ -1,7 +1,8 @@
 function calistir(callbackFonk){
-    setTimeout(function(){
+    setTimeout(()=>{
         console.log("Araba  calitir.");
-        callbackFonk("ahmet");
+        //setTimeout(()=>{callbackFonk("ahmet");},3000)
+        callbackFonk("ahmet a")
     }, 2000);
 }
 

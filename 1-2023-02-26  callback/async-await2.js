@@ -67,8 +67,6 @@ ilk = () => {
     const promise1 = new Promise((resolve, reject) => setTimeout(resolve,5000, 'İlk'))
     return promise1; 
 }
-//const result1 = ilk();
-//console.log(result1);
 
 ikinci = () => {
     const promise2 = new Promise((resolve, reject) => setTimeout(resolve,3000, 'ikinci')) 
@@ -84,7 +82,6 @@ dorduncu = () => {
     const promise4 = new Promise((resolve, reject) => setTimeout(resolve,1000, 'dorduncu'))
     return promise4
 }
-
 
 fetchUser = () => {
     const promise5 = fetch('http://jsonplaceholder.typicode.com/users').then(res => res.json())
