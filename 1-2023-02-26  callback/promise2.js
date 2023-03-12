@@ -35,6 +35,7 @@ const createPost = (post) => {
 createPost({title : 'Post Three', body: 'This is post Three'})
         .then(getPosts)
         .catch( err => console.log(err))
+    
 
 /* Yukarıda genel olarak bahsettiğimiz syntax yapısını örnek üzerinden inceleyecek olursak ; new keyword’ü ile tanımladık. Daha sonra bu promise resolve( ) , reject ( ) adında iki tane fonksiyon aldı. Error adında bir değişken tanımladık ve if koşulunda başarılı durumda resolve( ) , başarısız durumda reject( ) ‘ e yolladık. createPost ( ) fonksiyonunu kullanırken de hata olmadığında resolve ( ) oluyor ve işlem then( )’e giriyor. Aksi durumlarda reject( ) oluyor ve işlem catch( )’ e giriyor. then( ) içerisindeki getPost( ) fonksiyonu yeni post eklendikten sonra tüm postları çağırıyor ve yeni eklenen post başarılı bir şekilde eklenmiş oluyor. Çıktıda son durumda şöyle oluyor. 
 çıktıya ekranda bakkkkkk*/
@@ -44,11 +45,11 @@ createPost({title : 'Post Three', body: 'This is post Three'})
 const printOrder = (order) => {
     return new Promise ((resolve, reject) => {
         if(true) {
-            setTimeout( () => {
+            //setTimeout( () => {
                 resolve(),
                 console.log(order),
-                Math.random * 100 // galiba rastgele bir işlem suresi oluşturuyor.
-            })
+                Math.random * 1000 // galiba rastgele bir işlem suresi oluşturuyor.
+            //})
         } else {
             reject(`${order} - de problem` )
         }
@@ -62,9 +63,9 @@ const printAll = () => {
     .catch((e) => console.log(e))
 }
 
-printAll();
+//printAll();
 
-console.log("Promois All komutunu cıktısı")
+//console.log("Promois All komutunu cıktısı")
 /*************************************************************************** */
 
 /*Promise yapısı ile ilgili promise.all( ) ve promise.race( ) özelliklerinden de bahsetmek istiyorum. Promise.all( ) , birden fazla promise tek bir then( ) ve catch( ) ile yazılabiliyor. Promise’lerden biri reject( ) olursa direk catch( )’e girer. Promise.race( ) ise promise’ler arasından en hızlı olan döner.Örneklerle pekiştirelim. */

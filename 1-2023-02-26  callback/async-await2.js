@@ -38,7 +38,7 @@ async function init() {
     getPosts()
 }
 
-//init()
+init()
 
 
 /* Yukarıda bahsettiğimiz özelliklere göre örneğimizi inceleyecek olursak init( ) fonksiyonumuzun başına async ifadesini ekledik. createPost ( ) fonksiyonun başına da await ekledik ve böylelikle bu fonksiyondan yanıt almadan diğer fonksiyona geçmemiş olacak. Buradan yanıt geldikten sonra getPosts( ) fonksiyonu ile tüm post’ları yazdırmış olduk.
