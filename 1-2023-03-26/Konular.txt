@@ -1,0 +1,3 @@
+14 Hafta 
+JS HTML DOM ile ilgili odev cozumu 
+axios veri cekme konusu anlatıldı
