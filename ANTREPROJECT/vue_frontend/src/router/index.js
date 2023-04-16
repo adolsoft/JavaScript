@@ -6,6 +6,8 @@ import ErrorView from "../views/ErrorView";
 import UsersView from "../views/UsersView";
 import LoginView from "../views/LoginView";
 import TodoView from "../views/TodoView";
+import AntrenorLoginView from "../views/AntrenorLoginView";
+import ornek from   "../views/ornek1View";
 
 Vue.use(VueRouter);
 
@@ -29,6 +31,16 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView,
+  },
+  {
+    path: '/ornek',
+    name: 'ornek',
+    component: ornek,
+  },
+  {
+    path: '/antrenorlogin',
+    name: 'antrenorlogin',
+    component: AntrenorLoginView,
   },
   {
     path: '/todo',

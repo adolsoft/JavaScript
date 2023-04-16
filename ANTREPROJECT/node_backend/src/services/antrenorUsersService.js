@@ -26,7 +26,7 @@ try {
    const accessToken = jwt.sign({antrenorUser}, process.env.jwt_secret_key); // burda bir sifre gerekiyor. / bu .env dosyasında tanımlıyoruz
 
     res.json({
-        user : {
+        AntrenorUsers : { // eski degeri user
             token: accessToken,
         ...antrenorUser, // user tokeni ekleyip gonderiri
         },
