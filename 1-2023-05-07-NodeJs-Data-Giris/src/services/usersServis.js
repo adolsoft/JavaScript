@@ -1,4 +1,5 @@
 const Users = require("../models/Users.js");
+const jwt = require('jsonwebtoken');
 
 const register = async (req, res) => {
     const user = ({username, password, name, surname} = req.body);
@@ -13,7 +14,7 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-    const user =({username, password } = req.body); 
+    const {username, password } = req.body; 
     const data = await Users.findOne({username}).exec(); 
     if (!data)  { // sonuc bulamadıysa
         return res.status(404).json({message:"User cannot be found.."});
@@ -24,14 +25,14 @@ const login = async (req, res) => {
     if (!isValidate) {
         return res.status(403).json({message:"The password is incorrect.."}); // şifre uyuşmadı ise bu hatayı gondurur.
     };
-    const loggenIdUser = {
+    const user = {   //const loggenIdUser = {
         id: data.id,
         username: data.username,
         name: data.name,
         surname: data.surname
     }
 
-    res.status(200).json(loggenIdUser); // data geri gönderdik.
+    res.status(200).json(user); // data geri gönderdik. //res.status(200).json(loggenIdUser);
     //password === "$2b$10$J4m67LDOQsf7yUe9nGxc1eUcthtA5xo.1SzJoNCR8lzW.qaceXbMe";
 };
 
